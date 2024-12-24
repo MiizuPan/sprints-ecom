@@ -1,0 +1,23 @@
+<!-- Login Form -->
+<div id="loginSection" class="auth-container">
+	<h2 class="text-center mb-4">Login</h2>
+	<form id="loginForm">
+		<div class="mb-3">
+			<label class="form-label">Email</label>
+			<input type="email" class="form-control" required>
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Password</label>
+			<input type="password" class="form-control" required>
+		</div>
+		<div class="mb-3 form-check">
+			<input type="checkbox" class="form-check-input" id="rememberMe">
+			<label class="form-check-label" for="rememberMe">Remember me</label>
+		</div>
+		<button type="button" class="btn btn-primary w-100" onclick="showProfile()">Login</button>
+		<div class="text-center mt-3">
+			<a href="#" onclick="showRegistration()">Create new account</a> |
+			<a href="#" onclick="showForgotPassword()">Forgot password?</a>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ShopEasy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/css/styles.css" rel="stylesheet">
+	<link href="/assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">ShopEasy</a>
+            <div class="ms-auto">
+                <span class="navbar-text">
+                    Need help? Call (123) 456-7890
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Section -->
+    <div class="container my-5">
+        <!-- Progress Steps -->
+        <div class="row step-indicator">
+            <div class="col-4 step active" id="shippingStep">
+                <h6>1. Shipping</h6>
+            </div>
+            <div class="col-4 step" id="paymentStep">
+                <h6>2. Payment</h6>
+            </div>
+            <div class="col-4 step" id="confirmationStep">
+                <h6>3. Review</h6>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Checkout Forms -->
+            <div class="col-lg-8">
+                <!-- Shipping Form -->
+                <div id="shippingForm">
+                    <h3 class="mb-4">Shipping Information</h3>
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-control mb-2" placeholder="Street Address" required>
+                            <input type="text" class="form-control" placeholder="Apt, Suite, etc. (optional)">
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">State</label>
+                                <select class="form-select" required>
+                                    <option value="">Select...</option>
+                                    <option>CA</option>
+                                    <option>NY</option>
+                                    <option>TX</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">ZIP Code</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="showPaymentForm()">Continue to Payment</button>
+                    </form>
+                </div>
+
+                <!-- Payment Form -->
+                <div id="paymentForm" style="display: none;">
+                    <h3 class="mb-4">Payment Method</h3>
+                    <form>
+                        <!-- Payment Options -->
+                        <div class="mb-4">
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" checked>
+                                <label class="form-check-card w-100" for="creditCard">
+                                    <h6 class="mb-0">Credit Card</h6>
+                                    <small class="text-muted">Pay with Visa, MasterCard, or American Express</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="paypal">
+                                <label class="form-check-card w-100" for="paypal">
+                                    <h6 class="mb-0">PayPal</h6>
+                                    <small class="text-muted">Pay with your PayPal account</small>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Credit Card Details -->
+                        <div id="creditCardForm">
+                            <div class="mb-3">
+                                <label class="form-label">Card Number</label>
+                                <input type="text" class="form-control" placeholder="1234 5678 9012 3456" required>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Expiration Date</label>
+                                    <input type="text" class="form-control" placeholder="MM/YY" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">CVV</label>
+                                    <input type="text" class="form-control" placeholder="123" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Name on Card</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-secondary" onclick="showShippingForm()">Back</button>
+                            <button type="button" class="btn btn-primary" onclick="showReviewForm()">Review Order</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Review Form -->
+                <div id="reviewForm" style="display: none;">
+                    <h3 class="mb-4">Review Your Order</h3>
+                    
+                    <!-- Shipping Details Summary -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Shipping Details</h5>
+                            <p class="mb-0">John Doe</p>
+                            <p class="mb-0">123 Main St</p>
+                            <p class="mb-0">New York, NY 10001</p>
+                            <p>United States</p>
+                            <button class="btn btn-link p-0" onclick="showShippingForm()">Edit</button>
+                        </div>
+                    </div>
+
+                    <!-- Payment Details Summary -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Payment Method</h5>
+                            <p class="mb-0">Credit Card ending in 3456</p>
+                            <button class="btn btn-link p-0" onclick="showPaymentForm()">Edit</button>
+                        </div>
+                    </div>
+
+                    <!-- Items Summary -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Order Items</h5>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Smartphone Pro Max (1)</span>
+                                <span>$699.99</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Wireless Headphones (1)</span>
+                                <span>$149.99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                        <label class="form-check-label" for="termsCheck">
+                            I agree to the terms and conditions
+                        </label>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-secondary" onclick="showPaymentForm()">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="placeOrder()">Place Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Order Summary</h5>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <span>$849.98</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Shipping</span>
+                            <span>$9.99</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Tax</span>
+                            <span>$85.00</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-3">
+                            <strong>Total</strong>
+                            <strong>$944.97</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p>© 2024 ShopEasy. All rights reserved.</p>
+        </div>
+    </footer>
+
+	<script src="/assets/js/cartManager.js"></script>
+    <script src="/assets/js/main.js"></script>
+	<script src="/assets/js/validation.js"></script>
+</body>
+</html>
