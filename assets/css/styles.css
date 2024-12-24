@@ -1,0 +1,87 @@
+/* Main stylesheet */
+/* General styles */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --spacing-unit: 1rem;
+}
+
+/* Header styles */
+.hero-section {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+}
+
+/* Product styles */
+.product-card {
+    transition: transform 0.2s;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+}
+.product-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+/* Cart styles */
+.cart-item img {
+    max-width: 100px;
+    height: auto;
+}
+.quantity-input {
+    width: 80px;
+}
+.product-total {
+    min-width: 100px;
+}
+
+/* Form styles */
+.form-check-card {
+    cursor: pointer;
+    border: 2px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 1rem;
+}
+.form-check-card:hover {
+    border-color: #0d6efd;
+}
+.form-check-input:checked + .form-check-card {
+    border-color: #0d6efd;
+    background-color: #f8f9fa;
+}
+
+/* Account styles */
+.auth-container {
+    max-width: 400px;
+    margin: 2rem auto;
+}
+.profile-container {
+    max-width: 800px;
+    margin: 2rem auto;
+}
+.profile-section {
+    display: none;
+}
+.profile-section.active {
+    display: block;
+}
+
+/* Accessibility styles */
+:focus {
+    outline: 3px solid #0d6efd;
+    outline-offset: 2px;
+}
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - ShopEasy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/styles.css" rel="stylesheet">
+    <link href="/assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html">ShopEasy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/pages/products/index.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/products/categories.html">Categories</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/cart/index.html">Cart (<span id="cartCount">0</span>)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/account/login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Products Section -->
+    <div class="container my-5">
+        <!-- Search and Filter -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="searchInput" placeholder="Search products...">
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="sortFilter">
+                    <option value="default">Sort by</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="row" id="productsGrid">
+            <!-- Products will be dynamically inserted here -->
+        </div>
+
+        <!-- Pagination -->
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p>© 2024 ShopEasy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/assets/js/cartManager.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/validation.js"></script>
+    
+    <!-- Products Page Specific JavaScript -->
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            filterProducts();
+        });
+
+        // Category filter
+        document.getElementById('categoryFilter').addEventListener('change', function() {
+            filterProducts();
+        });
+
+        // Sort filter
+        document.getElementById('sortFilter').addEventListener('change', function() {
+            filterProducts();
+        });
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const sortFilter = document.getElementById('sortFilter').value;
+
+            // Filter products based on search and category
+            let filteredProducts = allProducts.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+                const matchesCategory = !categoryFilter || product.category.toLowerCase() === categoryFilter;
+                return matchesSearch && matchesCategory;
+            });
+
+            // Sort products
+            if (sortFilter === 'price-low') {
+                filteredProducts.sort((a, b) => a.price - b.price);
+            } else if (sortFilter === 'price-high') {
+                filteredProducts.sort((a, b) => b.price - a.price);
+            }
+
+            // Update pagination based on filtered results
+            updateProducts(1, filteredProducts);
+            updatePaginationState(filteredProducts);
+        }
+
+        // Initialize pagination when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePagination();
+        });
+    </script>
+</body>
+</html>
