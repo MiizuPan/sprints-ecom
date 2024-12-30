@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - MyShop</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+		<header>
+			<nav>
+					<div class="logo">MyShop</div>
+					<ul>
+							<li><a href="/index.html">Home</a></li>
+							<li><a href="/pages/products/index.html">Products</a></li>
+							<li><a href="/pages/static/about.html">About</a></li>
+							<li><a href="/pages/static/contact.html">Contact</a></li>
+							<li><a href="/pages/cart/index.html" id="cart-icon">Cart (0)</a></li>
+							<li><a href="/pages/account/login.html">Login</a></li>
+					</ul>
+			</nav>
+    </header>
+
+    <main>
+        <div class="product-details" id="product-details">
+            <!-- Product details will be populated by JavaScript -->
+        </div>
+    </main>
+
+		<footer>
+			<div class="footer-content">
+					<div class="footer-links">
+							<a href="/pages/static/about.html">About Us</a>
+							<a href="/pages/static/contact.html">Contact</a>
+							<a href="/pages/static/privacy.html">Privacy Policy</a>
+					</div>
+					<p>&copy; 2024 MyShop. All rights reserved.</p>
+			</div>
+    </footer>
+
+    <script src="/assets/js/cartManager.js"></script>
+    <script>
+        function getProductId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        function displayProductDetails() {
+            const productId = getProductId();
+            // In a real app, you would fetch this from an API
+            const product = products.find(p => p.id === parseInt(productId));
+
+            if (!product) {
+                document.getElementById('product-details').innerHTML = '<p>Product not found</p>';
+                return;
+            }
+
+            document.getElementById('product-details').innerHTML = `
+                <div class="product-container">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h1>${product.name}</h1>
+                        <p class="price">$${product.price}</p>
+                        <p class="description">${product.description}</p>
+                        <div class="product-actions">
+                            <button onclick="cartManager.addToCart(${JSON.stringify(product)})">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', displayProductDetails);
+    </script>
+</body>
+</html> 

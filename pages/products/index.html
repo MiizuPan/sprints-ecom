@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - MyShop</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+		<header>
+			<nav>
+					<div class="logo">MyShop</div>
+					<ul>
+							<li><a href="/index.html">Home</a></li>
+							<li><a href="/pages/products/index.html">Products</a></li>
+							<li><a href="/pages/static/about.html">About</a></li>
+							<li><a href="/pages/static/contact.html">Contact</a></li>
+							<li><a href="/pages/cart/index.html" id="cart-icon">Cart (0)</a></li>
+							<li><a href="/pages/account/login.html">Login</a></li>
+					</ul>
+			</nav>
+    </header>
+
+    <main>
+        <section class="products-section">
+            <div class="filters">
+                <h2>Filters</h2>
+                <div class="filter-group">
+                    <label for="category">Category:</label>
+                    <select id="category">
+                        <option value="">All</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="books">Books</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-range">Price Range:</label>
+                    <input type="range" id="price-range" min="0" max="1000">
+                    <span id="price-value">$500</span>
+                </div>
+            </div>
+            <div class="products-grid" id="products-list"></div>
+        </section>
+    </main>
+
+		<footer>
+			<div class="footer-content">
+					<div class="footer-links">
+							<a href="/pages/static/about.html">About Us</a>
+							<a href="/pages/static/contact.html">Contact</a>
+							<a href="/pages/static/privacy.html">Privacy Policy</a>
+					</div>
+					<p>&copy; 2024 MyShop. All rights reserved.</p>
+			</div>
+    </footer>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/cartManager.js"></script>
+</body>
+</html> 

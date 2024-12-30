@@ -1,0 +1,30 @@
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        margin-top: 1rem;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 2rem 1rem;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+} 

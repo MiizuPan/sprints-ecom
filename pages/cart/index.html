@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - MyShop</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+		<header>
+			<nav>
+					<div class="logo">MyShop</div>
+					<ul>
+							<li><a href="/index.html">Home</a></li>
+							<li><a href="/pages/products/index.html">Products</a></li>
+							<li><a href="/pages/static/about.html">About</a></li>
+							<li><a href="/pages/static/contact.html">Contact</a></li>
+							<li><a href="/pages/cart/index.html" id="cart-icon">Cart (0)</a></li>
+							<li><a href="/pages/account/login.html">Login</a></li>
+					</ul>
+			</nav>
+    </header>
+
+    <main>
+        <section class="cart-section">
+            <h1>Shopping Cart</h1>
+            <div id="cart-items"></div>
+            <div class="cart-summary">
+                <div class="subtotal">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="tax">
+                    <span>Tax (10%):</span>
+                    <span id="cart-tax">$0.00</span>
+                </div>
+                <div class="total">
+                    <span>Total:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button onclick="window.location.href='checkout.html'" class="checkout-button">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </section>
+    </main>
+
+		<footer>
+			<div class="footer-content">
+					<div class="footer-links">
+							<a href="/pages/static/about.html">About Us</a>
+							<a href="/pages/static/contact.html">Contact</a>
+							<a href="/pages/static/privacy.html">Privacy Policy</a>
+					</div>
+					<p>&copy; 2024 MyShop. All rights reserved.</p>
+			</div>
+    </footer>
+
+    <script src="/assets/js/cartManager.js"></script>
+    <script>
+        // Display cart items
+        function displayCart() {
+            const cartItems = cartManager.getCart();
+            const container = document.getElementById('cart-items');
+            
+            if (cartItems.length === 0) {
+                container.innerHTML = '<p>Your cart is empty</p>';
+                return;
+            }
+            
+            container.innerHTML = cartItems.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <h3>${item.name}</h3>
+                        <p>$${item.price}</p>
+                        <div class="quantity">
+                            <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                    <button onclick="cartManager.removeFromCart(${item.id})">Remove</button>
+                </div>
+            `).join('');
+            
+            updateCartTotals();
+        }
+
+        // Update cart totals
+        function updateCartTotals() {
+            const cartItems = cartManager.getCart();
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const tax = subtotal * 0.1;
+            const total = subtotal + tax;
+
+            document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('cart-tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Initialize cart display
+        document.addEventListener('DOMContentLoaded', displayCart);
+    </script>
+</body>
+</html> 

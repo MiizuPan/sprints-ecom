@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - MyShop</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+		<header>
+			<nav>
+					<div class="logo">MyShop</div>
+					<ul>
+							<li><a href="/index.html">Home</a></li>
+							<li><a href="/pages/products/index.html">Products</a></li>
+							<li><a href="/pages/static/about.html">About</a></li>
+							<li><a href="/pages/static/contact.html">Contact</a></li>
+							<li><a href="/pages/cart/index.html" id="cart-icon">Cart (0)</a></li>
+							<li><a href="/pages/account/login.html">Login</a></li>
+					</ul>
+			</nav>
+    </header>
+
+    <main>
+        <div class="checkout-container">
+            <h1>Checkout</h1>
+            <div class="checkout-grid">
+                <div class="shipping-form">
+                    <h2>Shipping Information</h2>
+                    <form id="checkout-form" onsubmit="return processCheckout(event)">
+                        <div class="form-group">
+                            <label for="fullname">Full Name:</label>
+                            <input type="text" id="fullname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <input type="text" id="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City:</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postal">Postal Code:</label>
+                            <input type="text" id="postal" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card">Card Number:</label>
+                            <input type="text" id="card" required pattern="\d{16}" placeholder="1234567890123456">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry">Expiry:</label>
+                                <input type="text" id="expiry" required placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV:</label>
+                                <input type="text" id="cvv" required pattern="\d{3}" placeholder="123">
+                            </div>
+                        </div>
+                        <button type="submit">Place Order</button>
+                    </form>
+                </div>
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div id="checkout-items"></div>
+                    <div class="checkout-total"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+		<footer>
+			<div class="footer-content">
+					<div class="footer-links">
+							<a href="/pages/static/about.html">About Us</a>
+							<a href="/pages/static/contact.html">Contact</a>
+							<a href="/pages/static/privacy.html">Privacy Policy</a>
+					</div>
+					<p>&copy; 2024 MyShop. All rights reserved.</p>
+			</div>
+    </footer>
+
+    <script src="/assets/js/cartManager.js"></script>
+    <script>
+        function displayCheckoutItems() {
+            const cartItems = cartManager.getCart();
+            const container = document.getElementById('checkout-items');
+            const totalContainer = document.querySelector('.checkout-total');
+            
+            let subtotal = 0;
+            
+            container.innerHTML = cartItems.map(item => {
+                subtotal += item.price * item.quantity;
+                return `
+                    <div class="checkout-item">
+                        <span>${item.name} x ${item.quantity}</span>
+                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                `;
+            }).join('');
+            
+            const tax = subtotal * 0.1;
+            const total = subtotal + tax;
+            
+            totalContainer.innerHTML = `
+                <div class="subtotal">
+                    <span>Subtotal:</span>
+                    <span>$${subtotal.toFixed(2)}</span>
+                </div>
+                <div class="tax">
+                    <span>Tax (10%):</span>
+                    <span>$${tax.toFixed(2)}</span>
+                </div>
+                <div class="total">
+                    <span>Total:</span>
+                    <span>$${total.toFixed(2)}</span>
+                </div>
+            `;
+        }
+
+        function processCheckout(event) {
+            event.preventDefault();
+            // In a real app, you would process the payment here
+            alert('Order placed successfully!');
+            cartManager.cart = [];
+            cartManager.saveCart();
+            window.location.href = '../products/index.html';
+            return false;
+        }
+
+        document.addEventListener('DOMContentLoaded', displayCheckoutItems);
+    </script>
+</body>
+</html> 
