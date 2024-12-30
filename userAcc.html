@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="User Account Management">
+    <title>My Account - ShopSmart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="HomePage.html" class="logo">ShopSmart</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="HomePage.html" class="nav-link">Home</a></li>
+                    <li><a href="Shoplisting.html" class="nav-link">Categories</a></li>
+                    <li><a href="ShoppingCart.html" class="nav-link">Cart</a></li>
+                    <li><a href="userAcc.html" class="nav-link">Account</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="account-container">
+        <header class="account-header">
+            <div class="welcome-section">
+                <h1>Welcome back, Salem</h1>
+                <p>Manage your account and view your orders</p>
+               
+            </div>
+            <div class="account-stats">
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Orders</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Wishlists</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Reviews</div>
+                </div>
+            </div>
+        </header>
+
+
+
+            <main class="content-area">
+                <section class="profile-form" id="profile">
+                    <h2 class="form-section-title">Personal Information</h2>
+                    <form>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" class="form-input" value="Salem">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" class="form-input" value="Omar">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-input" value="Salem@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-input" value="+971501111111">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </section>
+
+                <section class="order-list" id="orders">
+                    <article class="order-card">
+                        <div class="order-header">
+                            <span class="order-number">#ORD-2024-001</span>
+                            <span class="order-status status-delivered">Delivered</span>
+                        </div>
+                        <div class="order-details">
+                            <div class="order-meta">
+                                <p>Order Date: March 15, 2024</p>
+                                <p>Total: $199.99</p>
+                            </div>
+                            <div class="order-items">
+                                <div class="order-item">
+                                    <img src="img/headphone.jpeg" alt="Wireless Headphones" class="item-image">
+                                    <div class="item-info">
+                                        <h4>Wireless Headphones</h4>
+                                        <p>Color: Black</p>
+                                    </div>
+                                    <div class="item-price">$199.99</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
