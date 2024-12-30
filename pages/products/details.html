@@ -3,238 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smartphone Details - ShopEasy</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/assets/css/styles.css" rel="stylesheet">
-	<link href="/assets/css/responsive.css" rel="stylesheet">
+    <title>Product Details - MyShop</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
 </head>
 <body>
-    <!-- Navigation (same as previous pages) -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">ShopEasy</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Categories</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Cart (0)</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                </ul>
-            </div>
+		<header>
+			<nav>
+					<div class="logo">MyShop</div>
+					<ul>
+							<li><a href="/index.html">Home</a></li>
+							<li><a href="/pages/products/index.html">Products</a></li>
+							<li><a href="/pages/static/about.html">About</a></li>
+							<li><a href="/pages/static/contact.html">Contact</a></li>
+							<li><a href="/pages/cart/index.html" id="cart-icon">Cart (0)</a></li>
+							<li><a href="/pages/account/login.html">Login</a></li>
+					</ul>
+			</nav>
+    </header>
+
+    <main>
+        <div class="product-details" id="product-details">
+            <!-- Product details will be populated by JavaScript -->
         </div>
-    </nav>
+    </main>
 
-    <!-- Product Details Section -->
-    <div class="container my-5">
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Electronics</a></li>
-                <li class="breadcrumb-item active">Smartphone Pro Max</li>
-            </ol>
-        </nav>
+		<footer>
+			<div class="footer-content">
+					<div class="footer-links">
+							<a href="/pages/static/about.html">About Us</a>
+							<a href="/pages/static/contact.html">Contact</a>
+							<a href="/pages/static/privacy.html">Privacy Policy</a>
+					</div>
+					<p>&copy; 2024 MyShop. All rights reserved.</p>
+			</div>
+    </footer>
 
-        <!-- Product Info -->
-        <div class="row">
-            <!-- Product Images -->
-            <div class="col-md-6 mb-4">
-                <img src="/api/placeholder/600/400" id="mainImage" class="img-fluid mb-3" alt="Smartphone">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="/api/placeholder/150/100" class="img-fluid thumbnail active" alt="Thumbnail 1">
+    <script src="/assets/js/cartManager.js"></script>
+    <script>
+        function getProductId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        function displayProductDetails() {
+            const productId = getProductId();
+            // In a real app, you would fetch this from an API
+            const product = products.find(p => p.id === parseInt(productId));
+
+            if (!product) {
+                document.getElementById('product-details').innerHTML = '<p>Product not found</p>';
+                return;
+            }
+
+            document.getElementById('product-details').innerHTML = `
+                <div class="product-container">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
                     </div>
-                    <div class="col-3">
-                        <img src="/api/placeholder/150/100" class="img-fluid thumbnail" alt="Thumbnail 2">
-                    </div>
-                    <div class="col-3">
-                        <img src="/api/placeholder/150/100" class="img-fluid thumbnail" alt="Thumbnail 3">
-                    </div>
-                    <div class="col-3">
-                        <img src="/api/placeholder/150/100" class="img-fluid thumbnail" alt="Thumbnail 4">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product Details -->
-            <div class="col-md-6">
-                <h1 class="mb-3">Smartphone Pro Max</h1>
-                <div class="mb-3">
-                    <span class="star-rating">★★★★★</span>
-                    <span class="text-muted">(125 reviews)</span>
-                </div>
-                <h2 class="h3 mb-3">$699.99</h2>
-                <p class="mb-4">Latest model with great features including a powerful processor, amazing camera system, and long-lasting battery life.</p>
-                
-                <!-- Color Selection -->
-                <div class="mb-3">
-                    <h3 class="h6">Color:</h3>
-                    <div class="btn-group" role="group">
-                        <input type="radio" class="btn-check" name="color" id="color1" checked>
-                        <label class="btn btn-outline-secondary" for="color1">Black</label>
-                        <input type="radio" class="btn-check" name="color" id="color2">
-                        <label class="btn btn-outline-secondary" for="color2">Silver</label>
-                        <input type="radio" class="btn-check" name="color" id="color3">
-                        <label class="btn btn-outline-secondary" for="color3">Gold</label>
-                    </div>
-                </div>
-
-                <!-- Quantity -->
-                <div class="mb-4">
-                    <h3 class="h6">Quantity:</h3>
-                    <div class="input-group quantity-input">
-                        <button class="btn btn-outline-secondary" type="button" id="decreaseQuantity">-</button>
-                        <input type="number" class="form-control text-center" value="1" min="1" id="quantity">
-                        <button class="btn btn-outline-secondary" type="button" id="increaseQuantity">+</button>
-                    </div>
-                </div>
-
-                <!-- Add to Cart -->
-                <button class="btn btn-primary btn-lg mb-3 w-100">Add to Cart</button>
-
-                <!-- Product Features -->
-                <div class="mt-4">
-                    <h3 class="h5">Key Features:</h3>
-                    <ul class="list-unstyled">
-                        <li>✓ 6.7-inch Super Retina display</li>
-                        <li>✓ Triple-camera system</li>
-                        <li>✓ 5G capable</li>
-                        <li>✓ All-day battery life</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product Description and Reviews -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <ul class="nav nav-tabs" id="productTabs" role="tablist">
-                    <li class="nav-item">
-                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#description">Description</button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#specs">Specifications</button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#reviews">Reviews</button>
-                    </li>
-                </ul>
-
-                <div class="tab-content p-4 border border-top-0">
-                    <!-- Description Tab -->
-                    <div class="tab-pane fade show active" id="description">
-                        <h3>Product Description</h3>
-                        <p>Experience the next generation of mobile technology with the Smartphone Pro Max. This device combines cutting-edge features with elegant design to deliver an unprecedented user experience.</p>
-                        <p>The advanced camera system allows you to capture professional-quality photos and videos, while the powerful processor ensures smooth performance for all your apps and games.</p>
-                    </div>
-
-                    <!-- Specifications Tab -->
-                    <div class="tab-pane fade" id="specs">
-                        <h3>Technical Specifications</h3>
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th>Display</th>
-                                    <td>6.7-inch Super Retina</td>
-                                </tr>
-                                <tr>
-                                    <th>Processor</th>
-                                    <td>A15 Bionic chip</td>
-                                </tr>
-                                <tr>
-                                    <th>Storage</th>
-                                    <td>128GB, 256GB, 512GB</td>
-                                </tr>
-                                <tr>
-                                    <th>Camera</th>
-                                    <td>Triple 12MP camera system</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Reviews Tab -->
-                    <div class="tab-pane fade" id="reviews">
-                        <h3>Customer Reviews</h3>
-                        <!-- Review Form -->
-                        <form class="mb-4">
-                            <div class="mb-3">
-                                <label class="form-label">Rating</label>
-                                <select class="form-select" style="width: 200px;">
-                                    <option>5 stars</option>
-                                    <option>4 stars</option>
-                                    <option>3 stars</option>
-                                    <option>2 stars</option>
-                                    <option>1 star</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Your Review</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit Review</button>
-                        </form>
-
-                        <!-- Review List -->
-                        <div class="review-list">
-                            <!-- Review 1 -->
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <span class="star-rating">★★★★★</span>
-                                            <h6 class="mt-1">John Doe</h6>
-                                        </div>
-                                        <small class="text-muted">2 days ago</small>
-                                    </div>
-                                    <p class="card-text">Great phone with amazing features! The camera quality is outstanding and battery life is excellent.</p>
-                                </div>
-                            </div>
-                            <!-- Review 2 -->
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <span class="star-rating">★★★★☆</span>
-                                            <h6 class="mt-1">Jane Smith</h6>
-                                        </div>
-                                        <small class="text-muted">1 week ago</small>
-                                    </div>
-                                    <p class="card-text">Very good phone overall. The only minor issue is that it's a bit expensive, but the quality justifies the price.</p>
-                                </div>
-                            </div>
+                    <div class="product-info">
+                        <h1>${product.name}</h1>
+                        <p class="price">$${product.price}</p>
+                        <p class="description">${product.description}</p>
+                        <div class="product-actions">
+                            <button onclick="cartManager.addToCart(${JSON.stringify(product)})">
+                                Add to Cart
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            `;
+        }
 
-    <!-- Footer -->
-    <footer class="bg-light py-4 mt-5">
-        <div class="container text-center">
-            <p>© 2024 ShopEasy. All rights reserved.</p>
-        </div>
-    </footer>
-
-	<script src="/assets/js/cartManager.js"></script>
-    <script src="/assets/js/main.js"></script>
-	<script src="/assets/js/validation.js"></script>
+        document.addEventListener('DOMContentLoaded', displayProductDetails);
+    </script>
 </body>
-</html>
+</html> 

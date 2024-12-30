@@ -5,6 +5,7 @@
 │   │   └── styles.css
 │   ├── images
 │   └── js
+│       ├── cartManager.js
 │       ├── main.js
 │       └── validation.js
 ├── index.html
@@ -26,4 +27,4 @@
 ├── README.md
 └── tree.txt
 
-10 directories, 17 files
+10 directories, 18 files

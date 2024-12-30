@@ -1,67 +1,65 @@
-// Form validation functions
-// Form validation
-function validateForm(formElement) {
-    const inputs = formElement.querySelectorAll('input[required], select[required], textarea[required]');
-    let isValid = true;
-
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            showError(input, 'This field is required');
-            isValid = false;
-        } else {
-            clearError(input);
-
-            // Email validation
-            if (input.type === 'email' && !isValidEmail(input.value)) {
-                showError(input, 'Please enter a valid email address');
-                isValid = false;
-            }
-
-            // Password validation
-            if (input.type === 'password' && input.value.length < 8) {
-                showError(input, 'Password must be at least 8 characters');
-                isValid = false;
-            }
-        }
-    });
-
-    return isValid;
-}
-
-function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function showError(input, message) {
-    const formGroup = input.closest('.mb-3');
-    const errorDiv = formGroup.querySelector('.error-message') || createErrorDiv();
-    formGroup.appendChild(errorDiv);
-    errorDiv.textContent = message;
-    input.classList.add('is-invalid');
-}
-
-function clearError(input) {
-    const formGroup = input.closest('.mb-3');
-    const errorDiv = formGroup.querySelector('.error-message');
-    if (errorDiv) {
-        errorDiv.remove();
+function validateLogin(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
+        return false;
     }
-    input.classList.remove('is-invalid');
+    
+    // Basic password validation
+    if (password.length < 6) {
+        alert('Password must be at least 6 characters long');
+        return false;
+    }
+    
+    // In a real application, you would send this to a server
+    // For demo purposes, we'll just simulate a successful login
+    localStorage.setItem('isLoggedIn', 'true');
+    window.location.href = '../profile.html';
+    return false;
 }
 
-function createErrorDiv() {
-    const div = document.createElement('div');
-    div.className = 'error-message text-danger mt-1 small';
-    return div;
-}
-
-// Initialize validation on all forms
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('form').forEach(form => {
-        form.addEventListener('submit', function(event) {
-            if (!validateForm(this)) {
-                event.preventDefault();
-            }
-        });
-    });
-});
+function validateRegistration(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    
+    // Name validation
+    if (name.length < 2) {
+        alert('Name must be at least 2 characters long');
+        return false;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
+        return false;
+    }
+    
+    // Password validation
+    if (password.length < 6) {
+        alert('Password must be at least 6 characters long');
+        return false;
+    }
+    
+    // Confirm password
+    if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return false;
+    }
+    
+    // In a real application, you would send this to a server
+    // For demo purposes, we'll just simulate a successful registration
+    localStorage.setItem('isLoggedIn', 'true');
+    window.location.href = '../profile.html';
+    return false;
+} 

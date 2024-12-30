@@ -3,185 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Management - ShopEasy</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/assets/css/styles.css" rel="stylesheet">
-	<link href="/assets/css/responsive.css" rel="stylesheet">
+    <title>My Profile - MyShop</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">ShopEasy</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Account</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+		<header>
+			<nav>
+					<div class="logo">MyShop</div>
+					<ul>
+							<li><a href="/index.html">Home</a></li>
+							<li><a href="/pages/products/index.html">Products</a></li>
+							<li><a href="/pages/static/about.html">About</a></li>
+							<li><a href="/pages/static/contact.html">Contact</a></li>
+							<li><a href="/pages/cart/index.html" id="cart-icon">Cart (0)</a></li>
+							<li><a href="/pages/account/login.html">Login</a></li>
+					</ul>
+			</nav>
+    </header>
 
-    <!-- Forgot Password Form -->
-    <div id="forgotPasswordSection" class="auth-container" style="display: none;">
-        <h2 class="text-center mb-4">Reset Password</h2>
-        <form id="forgotPasswordForm">
-            <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-control" required>
-            </div>
-            <button type="button" class="btn btn-primary w-100" onclick="resetPassword()">Send Reset Link</button>
-            <div class="text-center mt-3">
-                <a href="#" onclick="showLogin()">Back to Login</a>
-            </div>
-        </form>
-    </div>
-
-    <!-- User Profile Section -->
-    <div id="profileSection" class="profile-container" style="display: none;">
-        <div class="row">
-            <!-- Profile Navigation -->
-            <div class="col-md-3">
-                <div class="list-group">
-                    <button class="list-group-item list-group-item-action active" onclick="showProfileTab('profile')">Profile</button>
-                    <button class="list-group-item list-group-item-action" onclick="showProfileTab('orders')">Orders</button>
-                    <button class="list-group-item list-group-item-action" onclick="showProfileTab('addresses')">Addresses</button>
-                    <button class="list-group-item list-group-item-action" onclick="showProfileTab('settings')">Settings</button>
-                    <button class="list-group-item list-group-item-action text-danger" onclick="logout()">Logout</button>
-                </div>
-            </div>
-
-            <!-- Profile Content -->
-            <div class="col-md-9">
-                <!-- Profile Info -->
-                <div id="profileTab" class="profile-section active">
-                    <h3>Profile Information</h3>
-                    <form>
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" value="John Doe">
+    <main>
+        <div class="profile-container">
+            <h1>My Profile</h1>
+            <div class="profile-grid">
+                <div class="profile-info">
+                    <h2>Personal Information</h2>
+                    <form id="profile-form" onsubmit="return updateProfile(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name:</label>
+                            <input type="text" id="name" value="John Doe" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" value="john@example.com">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" value="john@example.com" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Phone</label>
-                            <input type="tel" class="form-control" value="(123) 456-7890">
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="tel" id="phone" value="">
                         </div>
-                        <button type="button" class="btn btn-primary">Update Profile</button>
+                        <button type="submit">Update Profile</button>
                     </form>
                 </div>
-
-                <!-- Order History -->
-                <div id="ordersTab" class="profile-section">
-                    <h3>Order History</h3>
-                    <div class="card mb-3 order-card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h6 class="card-title">Order #12345</h6>
-                                    <p class="card-text text-muted">Placed on Dec 20, 2024</p>
-                                </div>
-                                <div class="text-end">
-                                    <span class="badge bg-success">Delivered</span>
-                                    <p class="card-text">$944.97</p>
-                                </div>
+                
+                <div class="order-history">
+                    <h2>Order History</h2>
+                    <div class="orders-list">
+                        <!-- Sample order history -->
+                        <div class="order-item">
+                            <div class="order-header">
+                                <span>Order #12345</span>
+                                <span>Date: 2024-03-15</span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3 order-card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h6 class="card-title">Order #12344</h6>
-                                    <p class="card-text text-muted">Placed on Dec 15, 2024</p>
-                                </div>
-                                <div class="text-end">
-                                    <span class="badge bg-primary">Shipped</span>
-                                    <p class="card-text">$249.99</p>
-                                </div>
+                            <div class="order-details">
+                                <p>Status: Delivered</p>
+                                <p>Total: $129.99</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Addresses -->
-                <div id="addressesTab" class="profile-section">
-                    <h3>My Addresses</h3>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h6 class="card-title">Home Address</h6>
-                            <p class="card-text">
-                                123 Main St<br>
-                                New York, NY 10001<br>
-                                United States
-                            </p>
-                            <div class="btn-group">
-                                <button class="btn btn-sm btn-outline-primary">Edit</button>
-                                <button class="btn btn-sm btn-outline-danger">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary">Add New Address</button>
-                </div>
-
-                <!-- Account Settings -->
-                <div id="settingsTab" class="profile-section">
-                    <h3>Account Settings</h3>
-                    <form>
-                        <div class="mb-3">
-                            <label class="form-label">Current Password</label>
-                            <input type="password" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">New Password</label>
-                            <input type="password" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Confirm New Password</label>
-                            <input type="password" class="form-control">
-                        </div>
-                        <button type="button" class="btn btn-primary">Change Password</button>
-                    </form>
-                    <hr>
-                    <div class="mb-3">
-                        <h5>Email Preferences</h5>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" checked>
-                            <label class="form-check-label">Order updates</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" checked>
-                            <label class="form-check-label">Promotions and deals</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">Newsletter</label>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
-	<script src="/assets/js/cartManager.js"></script>
-    <script src="/assets/js/main.js"></script>
-	<script src="/assets/js/validation.js"></script>
+		<footer>
+			<div class="footer-content">
+					<div class="footer-links">
+							<a href="/pages/static/about.html">About Us</a>
+							<a href="/pages/static/contact.html">Contact</a>
+							<a href="/pages/static/privacy.html">Privacy Policy</a>
+					</div>
+					<p>&copy; 2024 MyShop. All rights reserved.</p>
+			</div>
+    </footer>
+
+    <script>
+        function updateProfile(event) {
+            event.preventDefault();
+            // In a real app, you would send this to a server
+            alert('Profile updated successfully!');
+            return false;
+        }
+
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('isLoggedIn')) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
 </body>
-</html>
+</html> 
