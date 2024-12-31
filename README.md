@@ -1,5 +1,15 @@
 # Team 10 - Ecommerce App - Sprints Frontend Project
 
+## Members'  forked repos:-
+
+	Salem's design was chosen through unnanimous vote between the members and merged into this main repo, below are each of the members own created websites!
+
+	- Ali Eissa: https://github.com/alsaeed3/sprints-ecom
+	- Tiba: https://github.com/tiba1111/sprints-ecom
+	- (__MERGED__) Salem Bakarker: https://github.com/DevSalemO/sprints-ecom
+	- Maryam: https://github.com/madameltoum/maryam-sprints-ecom
+
+
 ## This is the __main repo__ for the project, please _fork_ this repository and complete the tasks before submitting a pull request.
 
 Refer to tasks below or on project page as needed.
