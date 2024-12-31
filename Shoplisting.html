@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse our wide selection of products">
+    <title>Products - ShopSmart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="HomePage.html" class="logo">ShopSmart</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="HomePage.html" class="nav-link">Home</a></li>
+                    <li><a href="Shoplisting.html" class="nav-link">Categories</a></li>
+                    <li><a href="ShoppingCart.html" class="nav-link">Cart</a></li>
+                    <li><a href="userAcc.html" class="nav-link">Account</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="listing-page-container">
+        <nav aria-label="Breadcrumb" class="listing-breadcrumb">
+            <a href="/">Home</a> / <span>Products</span>
+        </nav>
+
+        <nav class="listing-category-nav" aria-label="Product Categories">
+            <div class="listing-category-list">
+                <button class="listing-category-btn active">All Products</button>
+                <button class="listing-category-btn">Electronics</button>
+                <button class="listing-category-btn">Clothing</button>
+                <button class="listing-category-btn">Home & Kitchen</button>
+                <button class="listing-category-btn">Books</button>
+                <button class="listing-category-btn">Sports</button>
+                <button class="listing-category-btn">Beauty</button>
+            </div>
+        </nav>
+
+        <div class="listing-content-grid">
+            <aside class="listing-filters-panel" aria-label="Product Filters">
+                <div class="listing-filter-section">
+                    <h3>Price Range</h3>
+                    <div class="listing-price-range">
+                        <div class="listing-price-inputs">
+                            <input type="number" class="listing-price-input" placeholder="Min" aria-label="Minimum price">
+                            <span>to</span>
+                            <input type="number" class="listing-price-input" placeholder="Max" aria-label="Maximum price">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="listing-filter-section">
+                    <h3>Brand</h3>
+                    <div class="listing-filter-group">
+                        <label class="listing-filter-checkbox">
+                            <input type="checkbox"> Apple
+                        </label>
+                        <label class="listing-filter-checkbox">
+                            <input type="checkbox"> Samsung
+                        </label>
+                        <label class="listing-filter-checkbox">
+                            <input type="checkbox"> Sony
+                        </label>
+                        <label class="listing-filter-checkbox">
+                            <input type="checkbox"> LG
+                        </label>
+                    </div>
+                </div>
+
+                <div class="listing-filter-section">
+                    <h3>Rating</h3>
+                    <div class="listing-filter-group">
+                        <label class="listing-filter-checkbox">
+                            <input type="checkbox"> 4★ & above
+                        </label>
+                        <label class="listing-filter-checkbox">
+                            <input type="checkbox"> 3★ & above
+                        </label>
+                        <label class="listing-filter-checkbox">
+                            <input type="checkbox"> 2★ & above
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <section aria-label="Products">
+                <div class="listing-products-header">
+                    <h2>All Products (3)</h2>
+                    <select class="listing-sort-select" aria-label="Sort products">
+                        <option>Most Popular</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Newest First</option>
+                    </select>
+                </div>
+
+                <div class="listing-products-grid">
+                    <article class="listing-product-card">
+                        <div class="listing-product-image">
+                            <img src="img/headphone.jpeg" alt="Wireless Headphones">
+                        </div>
+                        <div class="listing-product-details">
+                            <div class="listing-product-category">Electronics</div>
+                            <h3 class="listing-product-title">Premium Wireless Headphones</h3>
+                            <div class="listing-product-price">$199.99</div>
+                            <a href="Product1.html">
+                                <button class="listing-add-to-cart-btn" aria-label="Add Premium Wireless Headphones to cart">
+                                     View
+                                </button>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="listing-product-card">
+                        <div class="listing-product-image">
+                            <img src="img/download.jpeg" alt="Smart Watch">
+                        </div>
+                        <div class="listing-product-details">
+                            <div class="listing-product-category">Electronics</div>
+                            <h3 class="listing-product-title">Smart Watch Series X</h3>
+                            <div class="listing-product-price">$299.99</div>
+                            <a href="Product2.html">
+                                <button class="listing-add-to-cart-btn" aria-label="Add Smart Watch Series X to cart">
+                                     View
+                                </button>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="listing-product-card">
+                        <div class="listing-product-image">
+                            <img src="img/laptop.jpg" alt="Laptop Stand">
+                        </div>
+                        <div class="listing-product-details">
+                            <div class="listing-product-category">Accessories</div>
+                            <h3 class="listing-product-title">Dell Laptop</h3>
+                            <div class="listing-product-price">$999.99</div>
+                            <a href="Product3.html">
+                                <button class="listing-add-to-cart-btn" aria-label="Add Dell laptop to cart">
+                                     View
+                                </button>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
