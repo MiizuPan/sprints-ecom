@@ -1,6 +1,6 @@
 # Team 10 - Ecommerce App - Sprints Frontend Project
 
-## Members'  forked repos:-
+## Members'  forked repos:
 
 	Salem's design was chosen through unnanimous vote between the members and merged into this main repo, below are each of the members own created websites!
 
